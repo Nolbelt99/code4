@@ -47,8 +47,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('category') }}"> Kategóriák </a>
-                                    <a class="dropdown-item" href="#"> Alkategóriák </a>
-                                    <a class="dropdown-item" href="#"> Termékek </a>
+                                    <a class="dropdown-item" href="{{ route('product') }}"> Termékek </a>
                                 </div>
                             </li>
                         @endif

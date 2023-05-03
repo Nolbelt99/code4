@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,27 +11,33 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::paginate(15);
 
         return view('pruduct.index', compact('products'));
     }
 
     public function create()
     {
-        return view('pruduct.create');
+        $categories  = Category::get();
+
+        return view('pruduct.create', compact('categories'));
     }
 
     public function store(ProductStoreRequest $request)
     {
-        $validated = $request->validated();
+        $input = $request->all();
+        $user = Product::create($input);
 
-        return redirect()->route('product_show', ['id' => 1]);
+
+        return back()->with('success', 'User created successfully.');
     }
 
     public function edit($id)
     {
         $product = Product::where('id', $id)->first();
-        return view('pruduct.edit', compact('product'));
+        $categories  = Category::get();
+
+        return view('pruduct.edit', compact('product', 'categories'));
     }
 
     public function update(ProductStoreRequest $request, $id)
@@ -42,7 +49,7 @@ class ProductController extends Controller
                 'name' => $validated['name']
             ]);
 
-        return redirect()->route('product_show', ['id' => $id]);
+        return redirect()->route('product_edit', ['id' => $id]);
     }
 
     public function destroy($id)

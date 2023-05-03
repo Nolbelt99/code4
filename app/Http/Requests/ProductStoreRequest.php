@@ -24,9 +24,7 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users',
-            'name' => 'required|string|max:50',
-            'password' => 'required'
+            'name' => 'required|string|max:255',
         ];
     }
 
@@ -38,9 +36,8 @@ class ProductStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email is required!',
-            'name.required' => 'Name is required!',
-            'password.required' => 'Password is required!'
+            'name.required' => 'Megnevezés kötelező!',
+            'name.max' => 'Maximum 255 karakter szerepelhet benne!!'
         ];
     }
 }

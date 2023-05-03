@@ -26,7 +26,6 @@ class CategoryController extends Controller
         $user = Category::create($input);
         return back()->with('success', 'User created successfully.');
 
-        return redirect()->route('category_show', ['id' => 1]);
     }
 
     public function edit($id)
