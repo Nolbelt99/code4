@@ -1,29 +1,25 @@
 @extends('layouts.app')
 @section('title')
-    Szakasz típusok lista
+    Termékek
 @endsection
 @section('submenu')
-            <a class="btn btn-primary" href="{{ route('product_create') }}">
-
-            <svg class="icon me-2">
-                <use xlink:href="/icons/sprites/free.svg#cil-plus"></use>
-            </svg>
-            Új típus
+        <a class="btn btn-primary" href="{{ route('product_create') }}">
+            Új termék
         </a>
 @endsection
 @section('content')
 
     <div class="card shadow">
         <div class="card-body">
-            <table class="table table-hover" id="tblData">
+            <table class="table table-hover">
                 <thead>
-                <th>('name', 'Megnevezés')</th>
-                <th></th>
+                    <th>Megnevezés</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     @if ($products->count() == 0)
                         <tr>
-                            <td colspan="3">Nincs megjeleníthető típus.</td>
+                            <td colspan="3">Nincs megjeleníthető termék.</td>
                         </tr>
                     @endif
 
@@ -33,13 +29,16 @@
                                 {{ $product->name }}
                             </td>
                             <td class="text-right">
-                                <a href="{{ route('product_edit', ['id' => $product->id]) }}">Szerkesztés</a>
+                                <a class="btn btn-success" href="{{ route('product_edit', ['id' => $product->id]) }}">Szerkesztés</a>
+                                <a class="btn btn-danger" href="{{ route('product_destroy', ['id' => $product->id]) }}">Törlés</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {!! $products->links() !!}
+            <div class="d-flex justify-content-center">
+                {!! $products->links() !!}
+            </div>
         </div>
     </div>
 @endsection

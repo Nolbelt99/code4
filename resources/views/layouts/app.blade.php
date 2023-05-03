@@ -36,10 +36,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @if(Auth::user())
-                            <li class="nav-item"> <a class="mx-2" href="#"> Termékek </a> </li>
+                            <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Termékek </a> </li>
                         @endif
-                        <li class="nav-item"> <a class="mx-2" href="#"> Aktuális ajánlatok </a> </li>
-                        <li class="nav-item"> <a class="mx-2" href="#"> Újracsomagolt termékek </a> </li>
+                        <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Aktuális ajánlatok </a> </li>
+                        <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Újracsomagolt termékek </a> </li>
                         @if(Auth::user() && Auth::user()->isAdmin())
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -59,13 +59,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Bejelentkezés</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Regisztráció</a>
                                 </li>
                             @endif
                         @else
@@ -91,22 +91,24 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
-            <div class="col-8 py-2">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb my-0 ms-2">
-                        <li class="breadcrumb-item">
-                            <a href="/">Főoldal</a>
-                        </li>
-                        @yield('breadcrumb')
-                        <li class="breadcrumb-item active"><span>@yield('title')</span></li>
-                    </ol>
-                </nav>
+        @if (Auth::user())
+            <div class="container-fluid">
+                <div class="col-8 py-2">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb my-0 ms-2">
+                            <li class="breadcrumb-item">
+                                <a href="/">Főoldal</a>
+                            </li>
+                            @yield('breadcrumb')
+                            <li class="breadcrumb-item active"><span>@yield('title')</span></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-4 text-right">
+                    @yield('submenu')
+                </div>
             </div>
-            <div class="col-4 text-right">
-                @yield('submenu')
-            </div>
-        </div>
+        @endif
 
         <main class="py-4">
             @yield('content')

@@ -46,7 +46,10 @@ class ProductController extends Controller
 
         Product::where('id', $id)
             ->update([
-                'name' => $validated['name']
+                'name' => $validated['name'],
+                'price' => $validated['price'],
+                'image' => $validated['image'],
+                'category_id' => $validated['category'],
             ]);
 
         return redirect()->route('product_edit', ['id' => $id]);
