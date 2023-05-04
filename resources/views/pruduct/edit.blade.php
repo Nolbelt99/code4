@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row mt-3">
                             <p class="col-md-3 col-form-label">Ár:</p>
                             <div class="col-md-6">
                                 <div class="input-group">
@@ -33,15 +33,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row mt-3">
                             <p class="col-md-3 col-form-label">Kép:</p>
-                            <div class="col-md-6">
+                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="image" value="{{ $product->image }}">
+                                    <input name="image" type="file" onchange="document.getElementById('image_preview').src = window.URL.createObjectURL(this.files[0]);">
+                                    <img class="mt-3" id="image_preview" src="{{ asset('images/' . $product->image) }}" width="40%" height="40%">
                                 </div>
-                            </div>
+                            </div> 
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row mt-3">
                             <p class="col-md-3 col-form-label">Kategória:</p>
                             <div class="col-md-6">
                                 <div class="input-group">
@@ -77,5 +78,4 @@
             </div>
         </div>
     </form>
-
 @endsection

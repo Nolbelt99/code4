@@ -5,31 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif 
-                    @if(Auth::user() && Auth::user()->isAdmin())
-                        {{ __('You are admin!') }}
-                    @else
-                        {{ __('You are user!') }}
-                    @endif
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
                 <div class="card-header">Termékek</div>
-
                 <div class="card-body">
                     @foreach($products as $product)
                         <p> {{ $product->name }} </p> <br>
-                    @endforeach
+                        <img src="{{ asset('images/' . $product->image) }}" alt="tag">
+                        @endforeach
                 </div>
             </div>
         </div>

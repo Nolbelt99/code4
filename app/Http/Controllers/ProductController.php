@@ -11,19 +11,22 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::paginate(15);
+        $products = Product::orderBy('name')->paginate(15);
         return view('pruduct.index', compact('products'));
     }
 
     public function create()
     {
-        $categories  = Category::get();
+        $categories  = Category::orderBy('name')->get();
         return view('pruduct.create', compact('categories'));
     }
 
     public function store(ProductStoreRequest $request)
     {
+        $filename = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $filename);
         $input = $request->all();
+        $input['image'] = $filename;
         $product = Product::create($input);
 
         return back()->with('success', 'User created successfully.');
@@ -41,11 +44,14 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
+        $filename = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $filename);
+
         Product::where('id', $id)
             ->update([
                 'name' => $validated['name'],
                 'price' => $validated['price'],
-                'image' => $validated['image'],
+                'image' => $filename,
                 'category_id' => $validated['category_id'],
             ]);
 

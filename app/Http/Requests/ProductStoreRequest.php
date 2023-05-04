@@ -26,7 +26,7 @@ class ProductStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
-            'image' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,png,jpeg',
             'category_id' => 'required',
         ];
     }
@@ -42,7 +42,9 @@ class ProductStoreRequest extends FormRequest
             'name.required' => 'Megnevezés kötelező!',
             'price.required' => 'Ár megadása kötelező!',
             'image.required' => 'Kép feltöltése kötelező!',
-            'category_id.required' => 'KAtegória megadása kötelező!',
+            'image.image' => '',
+            'image.mimes' => 'Csak jpg, jpeg vagy png típusú képet lehet feltölteni.',
+            'category_id.required' => 'Kategória megadása kötelező!',
             'name.max' => 'Maximum 255 karakter szerepelhet benne!!'
         ];
     }

@@ -12,6 +12,7 @@
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
+                    <th></th>
                     <th>Megnevezés</th>
                     <th></th>
                 </thead>
@@ -24,6 +25,9 @@
 
                     @foreach ($products as $product)
                         <tr>
+                            <td>
+                                <img class="mt-3" id="image_preview" src="{{ asset('images/' . $product->image) }}" width="20%" height="20%">
+                            </td>
                             <td>
                                 {{ $product->name }}
                             </td>
