@@ -27,7 +27,7 @@ class ProductStoreRequest extends FormRequest
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
             'image' => 'required|string|max:255',
-            'category' => 'required',
+            'category_id' => 'required',
         ];
     }
 

@@ -49,7 +49,7 @@ class ProductController extends Controller
                 'name' => $validated['name'],
                 'price' => $validated['price'],
                 'image' => $validated['image'],
-                'category_id' => $validated['category'],
+                'category_id' => $validated['category_id'],
             ]);
 
         return redirect()->route('product_edit', ['id' => $id]);

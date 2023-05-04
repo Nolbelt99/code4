@@ -45,7 +45,7 @@
                             <p class="col-md-3 col-form-label">Kategória:</p>
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <select name="category" class="form-select">
+                                    <select name="category_id" class="form-select">
                                         @foreach($categories as $category)
                                             @if($category->id == $product->category->id)
                                                 <option selected value="{{ $category->id }}">{{ $category->name }}</option>
@@ -72,7 +72,6 @@
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

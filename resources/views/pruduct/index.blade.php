@@ -3,12 +3,11 @@
     Termékek
 @endsection
 @section('submenu')
-        <a class="btn btn-primary" href="{{ route('product_create') }}">
-            Új termék
-        </a>
+    <a class="btn btn-primary" href="{{ route('product_create') }}">
+        Új termék
+    </a>
 @endsection
 @section('content')
-
     <div class="card shadow">
         <div class="card-body">
             <table class="table table-hover">
@@ -29,8 +28,12 @@
                                 {{ $product->name }}
                             </td>
                             <td class="text-right">
-                                <a class="btn btn-success" href="{{ route('product_edit', ['id' => $product->id]) }}">Szerkesztés</a>
-                                <a class="btn btn-danger" href="{{ route('product_destroy', ['id' => $product->id]) }}">Törlés</a>
+                                <form id="adminForm" action="{{ route('product_destroy', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a class="btn btn-success" href="{{ route('product_edit', ['id' => $product->id]) }}">Szerkesztés</a>
+                                    <input type="submit" class="btn btn-danger" value="Törlés" onclick="return confirm('Biztosan törli?')">
+                                </form>
                             </td>
                         </tr>
                     @endforeach
