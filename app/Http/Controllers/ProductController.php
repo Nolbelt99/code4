@@ -29,7 +29,7 @@ class ProductController extends Controller
         $input['image'] = $filename;
         $product = Product::create($input);
 
-        return back()->with('success', 'User created successfully.');
+        return redirect()->route('product_edit', ['id' => $product->id])->with('message', 'Sikeres termék létrehozás.');
     }
 
     public function edit($id)
@@ -55,12 +55,12 @@ class ProductController extends Controller
                 'category_id' => $validated['category_id'],
             ]);
 
-        return redirect()->route('product_edit', ['id' => $id]);
+        return redirect()->route('product_edit', ['id' => $id])->with('message', 'Sikeres módosítás.');
     }
 
     public function destroy($id)
     {
         $product = Product::where('id', $id)->delete();
-        return redirect()->route('product');
+        return redirect()->route('product')->with('message', 'Sikeres törlés.');
     }
 }

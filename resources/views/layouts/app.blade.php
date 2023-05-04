@@ -109,7 +109,16 @@
                 </div>
             </div>
         @endif
-
+        @if (session('message'))
+            <div class="alert alert-success">
+                {!! session('message') !!}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {!! session('error') !!}
+            </div>
+        @endif
         <main class="py-4">
             @yield('content')
         </main>

@@ -4,7 +4,7 @@
 @endsection
 @section('submenu')
     <a class="btn btn-primary" href="{{ route('category_create') }}">
-        Új típus
+        Új kategória
     </a>
 @endsection
 @section('content')

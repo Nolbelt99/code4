@@ -11,7 +11,6 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $categories = Category::orderBy('name')->paginate(15);
-
         return view('category.index', compact('categories'));
     }
 
@@ -24,8 +23,7 @@ class CategoryController extends Controller
     {
         $input = $request->all();
         $category = Category::create($input);
-        return back()->with('success', 'User created successfully.');
-
+        return redirect()->route('category_edit', ['id' => $category->id])->with('message', 'Sikeres kategória létrehozás.');
     }
 
     public function edit($id)
@@ -43,13 +41,13 @@ class CategoryController extends Controller
                 'name' => $validated['name']
             ]);
 
-        return redirect()->route('category_edit', ['id' => $id]);
+        return redirect()->route('category_edit', ['id' => $id])->with('message', 'Sikeres módosítás.');
     }
 
     public function destroy($id)
     {
         $category = Category::where('id', $id)->delete();
-        return redirect()->route('category');
+        return redirect()->route('category')->with('message', 'Sikeres törlés.');
     }
 
 }

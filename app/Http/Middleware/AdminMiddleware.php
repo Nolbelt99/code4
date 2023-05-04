@@ -26,10 +26,10 @@ class AdminMiddleware
             if (Auth::user()->role == 1) {
                 return $next($request);
             } else {
-                return redirect('/home')->with('message', 'Hozzáférés megtagadva.');
+                return redirect('/')->with('error', 'Hozzáférés megtagadva.');
             }
         } else {
-            return redirect('/login')->with('message', 'Bejelentkezés szükséges a funkció eléréséhez.');
+            return redirect('/login')->with('error', 'Bejelentkezés szükséges a funkció eléréséhez.');
         }
 
         return $next($request);

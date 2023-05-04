@@ -9,8 +9,7 @@ class DefaultController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-
+        $products = Product::orderBy('name')->paginate(10);
         return view('home', compact('products'));
     }
 }
