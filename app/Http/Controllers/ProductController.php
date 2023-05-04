@@ -11,8 +11,20 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::orderBy('name')->paginate(15);
-        return view('pruduct.index', compact('products'));
+        $products = Product::query();
+
+        if ($request->has('name') && $request->input('name') != null) {
+            $products->where('name', 'like', '%'.$request->input('name').'%');
+        }
+        if ($request->has('category') && $request->input('category') != null) {
+            $products->where('category_id', $request->input('category'));
+        }
+
+        $filters = $request->all();
+        $categories  = Category::orderBy('name')->get();
+        $products = $products->orderBy('name')->paginate(15);
+
+        return view('pruduct.index', compact('products', 'filters', 'categories'));
     }
 
     public function create()

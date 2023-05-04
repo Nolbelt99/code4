@@ -36,7 +36,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @if(Auth::user())
-                            <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Termékek </a> </li>
+                            <li class="nav-item"> <a class="mx-2 nav-link" href="{{ route('product') }}"> Termékek </a> </li>
                         @endif
                         <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Aktuális ajánlatok </a> </li>
                         <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Újracsomagolt termékek </a> </li>

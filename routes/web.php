@@ -17,7 +17,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/', [DefaultController::class, 'index'])->name('default');
 
