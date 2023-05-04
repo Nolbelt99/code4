@@ -40,6 +40,9 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'name.required' => 'Megnevezés kötelező!',
+            'price.required' => 'Ár megadása kötelező!',
+            'image.required' => 'Kép feltöltése kötelező!',
+            'category_id.required' => 'KAtegória megadása kötelező!',
             'name.max' => 'Maximum 255 karakter szerepelhet benne!!'
         ];
     }

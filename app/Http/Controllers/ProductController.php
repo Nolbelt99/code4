@@ -12,22 +12,19 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::paginate(15);
-
         return view('pruduct.index', compact('products'));
     }
 
     public function create()
     {
         $categories  = Category::get();
-
         return view('pruduct.create', compact('categories'));
     }
 
     public function store(ProductStoreRequest $request)
     {
         $input = $request->all();
-        $user = Product::create($input);
-
+        $product = Product::create($input);
 
         return back()->with('success', 'User created successfully.');
     }
@@ -60,5 +57,4 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->delete();
         return redirect()->route('product');
     }
-
 }

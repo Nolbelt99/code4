@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::paginate(3);
+        $categories = Category::paginate(15);
 
         return view('category.index', compact('categories'));
     }
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         $input = $request->all();
-        $user = Category::create($input);
+        $category = Category::create($input);
         return back()->with('success', 'User created successfully.');
 
     }

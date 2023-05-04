@@ -1,50 +1,48 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="/settings/phase-type">Szakasz típusok lista</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('category') }}">Kategóriák</a></li>
 @endsection
 @section('title')
     {{ $category->name }} szerkesztése
 @endsection
-@section('head')
-@endsection
-
 @section('content')
 @if($errors->any())
     {!! implode('', $errors->all('<div>:message</div>')) !!}
 @endif
-    <form id="phaseTypeForm" action="{{ route('category_update', ['id' => $category->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('category_update', ['id' => $category->id]) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="row">
-            <div class="col-7">
+            <div class="col-md-6">
                 <div class="card shadow mb-2">
-                    <div class="card-header"><strong>Típus törzsadatok</strong></div>
+                    <div class="card-header"><strong>Törzsadatok</strong></div>
                     <div class="card-body">
-                        @csrf
-                        @method('PUT')
-
-                        <div class="row mb-1">
-                            <label class="col-sm-4 col-form-label" for="name">Név*:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" value="{{ $category->name }}" required>
+                        <div class="form-group row">
+                            <p class="col-md-3 col-form-label">Megnevezés:</p>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="name" value="{{ $category->name }}">
+                                </div>
                             </div>
                         </div>
-
-                        <div class="row">
+                        @if($errors->any())
+                            <div class="mt-5">
+                                {!! implode('', $errors->all('<div>:message</div>')) !!}
+                            </div>
+                        @endif
+                        <div class="row mt-5">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-success text-white" id="submit-all">
+                                <button type="submit" class="btn btn-success text-white">
                                     Mentés
                                 </button>
-                            </div>
-                            <div class="col-6 text-right">
-                                <a class="btn btn-secondary text-white" href="/settings/phase-type">
+                                <a class="btn btn-secondary text-white" href="{{ route('category') }}">
                                     Vissza
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </form>
-
 @endsection

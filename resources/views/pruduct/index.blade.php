@@ -28,7 +28,7 @@
                                 {{ $product->name }}
                             </td>
                             <td class="text-right">
-                                <form id="adminForm" action="{{ route('product_destroy', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('product_destroy', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('DELETE')
                                     <a class="btn btn-success" href="{{ route('product_edit', ['id' => $product->id]) }}">Szerkesztés</a>
