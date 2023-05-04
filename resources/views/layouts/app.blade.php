@@ -37,20 +37,12 @@
                     <ul class="navbar-nav me-auto">
                         @if(Auth::user())
                             <li class="nav-item"> <a class="mx-2 nav-link" href="{{ route('product') }}"> Termékek </a> </li>
+                            @if(Auth::user()->isAdmin())
+                                <li class="nav-item"> <a class="mx-2 nav-link" href="{{ route('category') }}"> Kategóriák </a> </li>
+                            @endif
                         @endif
-                        <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Aktuális ajánlatok </a> </li>
-                        <li class="nav-item"> <a class="mx-2 nav-link" href="#"> Újracsomagolt termékek </a> </li>
-                        @if(Auth::user() && Auth::user()->isAdmin())
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Admin
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('category') }}"> Kategóriák </a>
-                                    <a class="dropdown-item" href="{{ route('product') }}"> Termékek </a>
-                                </div>
-                            </li>
-                        @endif
+                        <li class="nav-item"> <a class="mx-2 nav-link" href="{{ route('about_us') }}"> Rólunk </a> </li>
+                        <li class="nav-item"> <a class="mx-2 nav-link" href="{{ route('stores') }}"> Üzleteink </a> </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -20,6 +20,8 @@ use App\Http\Controllers\CategoryController;
 Auth::routes();
 
 Route::get('/', [DefaultController::class, 'index'])->name('default');
+Route::get('/about-us', [DefaultController::class, 'aboutUs'])->name('about_us');
+Route::get('/stores', [DefaultController::class, 'stores'])->name('stores');
 
 Route::get('/products', [ProductController::class, 'index'])->middleware(['auth'])->name('product');
 Route::get('/product/{id}', [ProductController::class, 'show'])->middleware(['auth'])->name('product_show');

@@ -12,4 +12,14 @@ class DefaultController extends Controller
         $products = Product::orderBy('name')->paginate(10);
         return view('home', compact('products'));
     }
+
+    public function aboutUs()
+    {
+        return view('pages/about_us');
+    }
+
+    public function stores()
+    {
+        return view('pages/stores');
+    }
 }
